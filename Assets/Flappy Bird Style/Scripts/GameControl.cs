@@ -16,8 +16,6 @@ public class GameControl : MonoBehaviour
     public float scrollSpeedBgFar = -1.0f;
     public float scrollSpeedFg = -10.0f;
 
-
-
     void Awake()
     {
         // If we don't currently have a game control...

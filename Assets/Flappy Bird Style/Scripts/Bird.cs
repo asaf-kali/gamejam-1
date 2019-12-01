@@ -20,9 +20,9 @@ public class Bird : MonoBehaviour
     void Update()
     {
         // Don't allow control if the bird has died.
-        if (isDead == false)
+        if (isDead)
         {
-
+            return;
         }
     }
 
