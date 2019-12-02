@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollingBgFar : ScrollingBase
 {
-    public ScrollingBgFar() : base(GameControl.instance.scrollSpeedBgFar)
+    public ScrollingBgFar() : base(GameControl.scrollSpeedBgFar)
     {
 
     }

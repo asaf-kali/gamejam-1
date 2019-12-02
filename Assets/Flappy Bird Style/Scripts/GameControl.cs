@@ -9,12 +9,16 @@ public class GameControl : MonoBehaviour
     public Text scoreText;                      // A reference to the UI text component that displays the player's score.
     public GameObject gameOvertext;             // A reference to the object that displays the text which appears when the player dies.
 
+    public GameObject player1;
+    public GameObject player2;
+    public GameObject ball;
+
     private int score = 0;                      // The player's score.
     public bool gameOver = false;               // Is the game over?
-    public float scrollSpeed = -5.0f;
-    public float scrollSpeedBgMid = -2.5f;
-    public float scrollSpeedBgFar = -1.0f;
-    public float scrollSpeedFg = -10.0f;
+    public const float scrollSpeed = -5.0f;
+    public const float scrollSpeedBgMid = -2.5f;
+    public const float scrollSpeedBgFar = -1.0f;
+    public const float scrollSpeedFg = -10.0f;
 
     void Awake()
     {
@@ -52,8 +56,9 @@ public class GameControl : MonoBehaviour
     public void BirdDied()
     {
         // Activate the game over text.
-        gameOvertext.SetActive(true);
+        Debug.Log("Game over");
+        // gameOvertext.SetActive(true);
         // Set the game to be over.
-        gameOver = true;
+        // gameOver = true;
     }
 }

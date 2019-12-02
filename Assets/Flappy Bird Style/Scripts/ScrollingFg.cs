@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollingFg : ScrollingBase
 {
-    public ScrollingFg() : base(GameControl.instance.scrollSpeedBgMid)
+    public ScrollingFg() : base(GameControl.scrollSpeedFg)
     {
     }
 }

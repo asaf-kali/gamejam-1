@@ -24,7 +24,7 @@ public class ScrollingBase : MonoBehaviour
     void Update()
     {
         // If the game is over, stop scrolling.
-        if (GameControl.instance.gameOver == true)
+        if (GameControl.instance.gameOver)
         {
             rb2d.velocity = Vector2.zero;
         }

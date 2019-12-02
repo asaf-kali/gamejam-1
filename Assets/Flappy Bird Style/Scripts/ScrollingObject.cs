@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollingObject : ScrollingBase
 {
-    public ScrollingObject() : base(GameControl.instance.scrollSpeed)
+    public ScrollingObject() : base(GameControl.scrollSpeed)
     {
     }
 }

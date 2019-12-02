@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollingBgMid : ScrollingBase
 {
-    public ScrollingBgMid() : base(GameControl.instance.scrollSpeedBgMid)
+    public ScrollingBgMid() : base(GameControl.scrollSpeedBgMid)
     {
 
     }
