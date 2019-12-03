@@ -18,7 +18,7 @@ public class ScrollingBase : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
 
         // Start the object moving.
-        rb2d.velocity = new Vector2(movingSpeed, 0);
+        rb2d.velocity = new Vector2(0, movingSpeed);
     }
 
     void Update()

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardMover : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float speedFactor = 1.5f;
     protected KeyCode left;
     protected KeyCode right;
 
-    public BoardMover(KeyCode left, KeyCode right)
+    public PlayerController(KeyCode left, KeyCode right)
     {
         this.left = left;
         this.right = right;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardMover1 : BoardMover
+public class Player1 : PlayerController
 {
-    public BoardMover1() : base(KeyCode.LeftArrow, KeyCode.RightArrow)
+    public Player1() : base(KeyCode.LeftArrow, KeyCode.RightArrow)
     {
     }
 

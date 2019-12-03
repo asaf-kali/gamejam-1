@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardMover2 : BoardMover
+public class Player2 : PlayerController
 {
-    public BoardMover2() : base(KeyCode.A, KeyCode.D)
+    public Player2() : base(KeyCode.A, KeyCode.D)
     {
     }
 

@@ -1,7 +1,8 @@
-﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Bird : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float upForce;                   // Upward force of the "flap".
     private bool isDead = false;            // Has the player collided with a wall?

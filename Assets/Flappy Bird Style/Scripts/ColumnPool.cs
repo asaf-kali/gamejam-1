@@ -13,7 +13,7 @@ public class ColumnPool : MonoBehaviour
     private int currentColumn = 0;                                  // Index of the current column in the collection.
 
     private Vector2 objectPoolPosition = new Vector2(-15, -25);     // A holding position for our unused columns offscreen.
-    public float spawnXPosition = 10f;
+    public float spawnYPosition = 10f;
 
     private float timeSinceLastSpawned;
 
@@ -43,7 +43,7 @@ public class ColumnPool : MonoBehaviour
             timeSinceLastSpawned = 0f;
 
             // Set a random y position for the column
-            float spawnYPosition = Random.Range(columnMin, columnMax);
+            float spawnXPosition = Random.Range(columnMin, columnMax);
 
             // ...then set the current column to that position.
             columns[currentColumn].transform.position = new Vector2(spawnXPosition, spawnYPosition);
