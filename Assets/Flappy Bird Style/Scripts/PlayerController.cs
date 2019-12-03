@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speedFactor = 1.5f;
+    public float speedFactor = 5f;
     protected KeyCode left;
     protected KeyCode right;
+    private Rigidbody2D rb;
 
     public PlayerController(KeyCode left, KeyCode right)
     {
@@ -18,6 +19,10 @@ public class PlayerController : MonoBehaviour
     {
         return direction * speedFactor * Time.deltaTime;
     }
+    protected virtual void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
@@ -28,6 +33,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(right))
         {
             transform.position += GetSpeed(Vector3.right);
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            rb.velocity = Vector2.zero;
+            transform.position += GetSpeed(Vector3.up);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            rb.velocity = Vector2.zero;
+            transform.position += GetSpeed(Vector3.down);
         }
     }
 }

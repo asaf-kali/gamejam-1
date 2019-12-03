@@ -8,9 +8,4 @@ public class Player2 : PlayerController
     {
     }
 
-    void Start()
-    {
-        GameControl.instance.player2 = this.gameObject;
-    }
-
 }
