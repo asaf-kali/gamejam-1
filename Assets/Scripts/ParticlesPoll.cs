@@ -4,7 +4,7 @@ using System.Collections;
 public class ParticlesPoll : MonoBehaviour
 {
     public float spawnDelay = 5f;
-    public float xMin = -8f;
+    public float xMin = -8f ;
     public float xMax = 8f;
     public float spawnYPosition = -10f;
     public float yVelocity = 5f;

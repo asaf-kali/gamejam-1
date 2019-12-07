@@ -5,22 +5,40 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     public List<GameObject> catchers;
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private PointEffector2D pef;
     public float catchDistance = 0.6f;
     public bool isCatched = false;
+    public GameObject catcher = null;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        pef = GetComponent<PointEffector2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (isCatched)
+            PreventEscape();
+        else
+            LookForCatcher();
+    }
+
+    void PreventEscape()
+    {
+        if (catcher == null)
+        {
+            Debug.LogError("Catcher was null!");
             return;
-        LookForCatcher();
+        }
+        if (!InCatchRange(catcher))
+        {
+            Debug.Log("Recerting particle escape");
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void LookForCatcher()
@@ -31,7 +49,7 @@ public class Particle : MonoBehaviour
             {
                 continue;
             }
-            if (HasCatchedMe(catcher))
+            if (InCatchRange(catcher))
             {
                 OnCatch(catcher);
                 break;
@@ -39,7 +57,7 @@ public class Particle : MonoBehaviour
         }
     }
 
-    bool HasCatchedMe(GameObject catcher)
+    bool InCatchRange(GameObject catcher)
     {
         return Vector2.Distance(catcher.transform.position, transform.position) <= catchDistance;
     }
@@ -48,6 +66,7 @@ public class Particle : MonoBehaviour
     {
         Debug.Log(catcher.name + " has catched paricle " + GetInstanceID());
         isCatched = true;
+        this.catcher = catcher;
         transform.parent = catcher.transform;
         rb.velocity = Vector2.zero;
     }
