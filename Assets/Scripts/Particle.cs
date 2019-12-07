@@ -37,9 +37,32 @@ public class Particle : MonoBehaviour
         }
         if (!InCatchRange(catcher))
         {
-            Debug.Log("Recerting particle escape");
-            rb.velocity = Vector2.zero;
+            Debug.Log("Particle escapes");
+            Vector2 polar = CartesianToPolar(transform.localPosition);
+            polar.y = 0.1f;
+            Vector2 newPoint = PolarToCartesian(polar);
+            transform.localPosition = newPoint;
         }
+    }
+
+
+    Vector2 CartesianToPolar(Vector2 point)
+    {
+        Vector2 polar = new Vector2();
+        polar.x = Mathf.Atan2(point.y, point.x);
+        if (point.x < 0)
+            polar.x += Mathf.PI;
+        polar.y = point.magnitude;
+        return polar;
+    }
+
+
+    Vector2 PolarToCartesian(Vector2 polar)
+    {
+        Vector2 point = new Vector2();
+        point.x = polar.y * Mathf.Cos(polar.x);
+        point.y = polar.y * Mathf.Sin(polar.x);
+        return point;
     }
 
     void LookForCatcher()

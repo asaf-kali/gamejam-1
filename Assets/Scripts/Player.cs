@@ -5,10 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float upForce;                   // Upward force of the "flap".
-    private bool isDead = false;            // Has the player collided with a wall?
-
-    private Animator anim;                  // Reference to the Animator component.
-    private Rigidbody2D rb;               // Holds a reference to the Rigidbody2D component of the bird.
+    public bool isDead = false;            // Has the player collided with a wall?
+    public Animator anim;                  // Reference to the Animator component.
+    public Rigidbody2D rb;               // Holds a reference to the Rigidbody2D component of the bird.
 
     protected void Start()
     {
