@@ -23,46 +23,35 @@ public class Particle : MonoBehaviour
     void Update()
     {
         if (isCatched)
-            PreventEscape();
+            DanceAroundCatcher();
         else
             LookForCatcher();
     }
 
-    void PreventEscape()
+    void DanceAroundCatcher()
     {
         if (catcher == null)
         {
             Debug.LogError("Catcher was null!");
             return;
         }
-        if (!InCatchRange(catcher))
+        Vector2 force = GetCatcherForceOnMe();
+        rb.AddForce(force);
+        CheckEscape();
+    }
+
+    Vector2 GetCatcherForceOnMe()
+    {
+        Vector2 force = -transform.localPosition / 1000;
+        return force;
+    }
+
+    void CheckEscape()
+    {
+        if (rb.velocity.magnitude > 5f)
         {
-            Debug.Log("Particle escapes");
-            Vector2 polar = CartesianToPolar(transform.localPosition);
-            polar.y = 0.1f;
-            Vector2 newPoint = PolarToCartesian(polar);
-            transform.localPosition = newPoint;
+            rb.velocity /= 2;
         }
-    }
-
-
-    Vector2 CartesianToPolar(Vector2 point)
-    {
-        Vector2 polar = new Vector2();
-        polar.x = Mathf.Atan2(point.y, point.x);
-        if (point.x < 0)
-            polar.x += Mathf.PI;
-        polar.y = point.magnitude;
-        return polar;
-    }
-
-
-    Vector2 PolarToCartesian(Vector2 polar)
-    {
-        Vector2 point = new Vector2();
-        point.x = polar.y * Mathf.Cos(polar.x);
-        point.y = polar.y * Mathf.Sin(polar.x);
-        return point;
     }
 
     void LookForCatcher()
@@ -81,9 +70,14 @@ public class Particle : MonoBehaviour
         }
     }
 
+    float DistanceFrom(GameObject other)
+    {
+        return Vector2.Distance(other.transform.position, transform.position);
+    }
+
     bool InCatchRange(GameObject catcher)
     {
-        return Vector2.Distance(catcher.transform.position, transform.position) <= catchDistance;
+        return DistanceFrom(catcher) <= catchDistance;
     }
 
     void OnCatch(GameObject catcher)
