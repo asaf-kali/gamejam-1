@@ -12,10 +12,9 @@ public class Player : MonoBehaviour
 
     protected void Start()
     {
-        // Get reference to the Animator component attached to this GameObject.
         anim = GetComponent<Animator>();
-        // Get and store a reference to the Rigidbody2D attached to this GameObject.
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
     }
 
     void Update()

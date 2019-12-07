@@ -16,6 +16,7 @@ public class Particle : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         pef = GetComponent<PointEffector2D>();
+        rb.gravityScale = 0;
     }
 
     // Update is called once per frame
