@@ -3,12 +3,12 @@ using System.Collections;
 
 public class ObsticlesPool : MonoBehaviour
 {
-    public GameObject[] obsticlePrefab;                               // The obsticle game object.
     public int obsticlePoolSize = 5;                                  // How many obsticles to keep on standby.
     public float spawnDelay = 3f;                                     // How quickly obsticles spawn.
     public float obsticleMin = -8f;                                   // Minimum x value of the obsticle position.
     public float obsticleMax = 8f;                                    // Maximum x value of the obsticle position.
-    public float spawnYPosition = -5f;
+    public float spawnYPosition = -10f;
+    public float yVelocity = 7f;
     public GameObject original;
 
     private GameObject[] obsticles;                                   // Collection of pooled obsticles.
@@ -38,27 +38,27 @@ public class ObsticlesPool : MonoBehaviour
     {
         timeSinceLastSpawned += Time.deltaTime;
 
-        if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnDelay)
+        if (GameControl.instance.gameOver || timeSinceLastSpawned < spawnDelay)
+            return;
+
+        Debug.Log("Sending new obsticle");
+        timeSinceLastSpawned = 0f;
+
+        // Set a random y position for the obsticle
+        float spawnXPosition = Random.Range(obsticleMin, obsticleMax);
+
+        GameObject newObsticle = obsticles[currentColumn];
+        // ...then set the current obsticle to that position.
+        newObsticle.transform.position = new Vector2(spawnXPosition, spawnYPosition);
+        Rigidbody2D rb = newObsticle.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector3.up * yVelocity;
+
+        // Increase the value of currentColumn. If the new size is too big, set it back to zero
+        currentColumn++;
+
+        if (currentColumn >= obsticlePoolSize)
         {
-            Debug.Log("Sending new obsticle");
-            timeSinceLastSpawned = 0f;
-
-            // Set a random y position for the obsticle
-            float spawnXPosition = Random.Range(obsticleMin, obsticleMax);
-
-            GameObject newObsticle = obsticles[currentColumn];
-            // ...then set the current obsticle to that position.
-            newObsticle.transform.position = new Vector2(spawnXPosition, spawnYPosition);
-            Rigidbody2D rb = newObsticle.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector3.up * 10f;
-
-            // Increase the value of currentColumn. If the new size is too big, set it back to zero
-            currentColumn++;
-
-            if (currentColumn >= obsticlePoolSize)
-            {
-                currentColumn = 0;
-            }
+            currentColumn = 0;
         }
     }
 }
