@@ -22,14 +22,28 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
-        // If we don't currently have a game control...
         if (instance == null)
-            // ...set this one to be it...
             instance = this;
-        // ...otherwise...
         else if (instance != this)
-            // ...destroy this one because it is a duplicate.
+        {
             Destroy(gameObject);
+            return;
+        }
+        InitPlayers();
+    }
+
+    void InitPlayers()
+    {
+        InitPlayer2();
+        player1.AddComponent<Player1>();
+        player2.AddComponent<Player2>();
+    }
+
+    void InitPlayer2()
+    {
+        Vector2 position = player1.transform.position;
+        position.x *= -1;
+        instance.player2 = Instantiate(player1, position, player1.transform.rotation);
     }
 
     void Update()

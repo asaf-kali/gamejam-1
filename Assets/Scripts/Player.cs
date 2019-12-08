@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float upForce;                   // Upward force of the "flap".
     public bool isDead = false;            // Has the player collided with a wall?
     public Animator anim;                  // Reference to the Animator component.
     public Rigidbody2D rb;               // Holds a reference to the Rigidbody2D component of the bird.
@@ -31,7 +30,6 @@ public class Player : MonoBehaviour
         if (other.gameObject == GameControl.instance.ball)
         {
             GameControl.instance.BallPass();
-            // GameControl.instance.ball.GetComponent<Rigidbody2D>().velocity *= -2f;
         }
         else
         {

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speedFactor = 5f;
+    public float speedFactor = 7f;
     protected KeyCode left;
     protected KeyCode right;
+    protected KeyCode up;
+    protected KeyCode down;
     private Rigidbody2D rb;
 
-    public PlayerController(KeyCode left, KeyCode right)
+    public PlayerController(KeyCode left, KeyCode right, KeyCode up, KeyCode down)
     {
         this.left = left;
         this.right = right;
+        this.up = up;
+        this.down = down;
     }
 
     Vector3 GetSpeed(Vector3 direction)
@@ -34,14 +38,12 @@ public class PlayerController : MonoBehaviour
         {
             transform.position += GetSpeed(Vector3.right);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(up))
         {
-            rb.velocity = Vector2.zero;
             transform.position += GetSpeed(Vector3.up);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(down))
         {
-            rb.velocity = Vector2.zero;
             transform.position += GetSpeed(Vector3.down);
         }
     }
