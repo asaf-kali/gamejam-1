@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Obsticle : MonoBehaviour
 {
+    void Start()
+    {
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), GameControl.instance.ball.GetComponent<CircleCollider2D>());
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<Player>() != null)
