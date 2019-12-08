@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
@@ -14,7 +14,8 @@ public class GameControl : MonoBehaviour
     public GameObject ball;
 
     private int score = 0;                      // The player's score.
-    public bool gameOver = false;               // Is the game over?
+    public bool gameOver { get; private set; }
+
     public const float scrollSpeed = -5.0f;
     public const float scrollSpeedBgMid = -2.5f;
     public const float scrollSpeedBgFar = -1.0f;
@@ -66,10 +67,8 @@ public class GameControl : MonoBehaviour
 
     public void GameOver()
     {
-        // Activate the game over text.
         Debug.Log("Game over");
-        // gameOvertext.SetActive(true);
-        // Set the game to be over.
+        Physics2D.gravity = Vector2.zero;
         gameOver = true;
     }
 }

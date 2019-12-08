@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameControl.instance.gameOver)
+        {
+            return;
+        }
         if (Input.GetKey(left))
         {
             transform.position += GetSpeed(Vector3.left);
