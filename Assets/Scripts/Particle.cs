@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum ParticleState
+{
+    Neutral,
+    Catched,
+    Detached
+}
+
 public class Particle : MonoBehaviour
 {
     public List<GameObject> catchers;
     private Rigidbody2D rb;
     private PointEffector2D pef;
+    private GameObject catcher = null;
+    private ParticleState state = ParticleState.Neutral;
     public float catchDistance = 0.6f;
     public float forceFactor = 1f / 300;
     public float randomFactor = 1f / 200;
-    public bool isCatched = false;
-    public GameObject catcher = null;
+    public float detachMagnitude = 15f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +32,14 @@ public class Particle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isCatched)
-            FollowCatcher();
-        else
+        if (state == ParticleState.Neutral)
+        {
             LookForCatcher();
+        }
+        else if (state == ParticleState.Catched)
+        {
+            FollowCatcher();
+        }
     }
 
     void FollowCatcher()
@@ -87,9 +99,27 @@ public class Particle : MonoBehaviour
     void OnCatch(GameObject catcher)
     {
         Debug.Log(catcher.name + " has catched paricle " + GetInstanceID());
-        isCatched = true;
+        state = ParticleState.Catched;
         this.catcher = catcher;
         transform.parent = catcher.transform;
         rb.velocity = Vector2.zero;
+    }
+
+    public void Detach()
+    {
+        if (catcher == null)
+        {
+            Debug.LogError("Remove called but catcher is null!");
+            return;
+        }
+        Debug.Log("Detaching particle " + GetInstanceID());
+        state = ParticleState.Detached;
+        transform.parent = null;
+        if (rb.velocity.magnitude < 0.1)
+        {
+            // Avoid divide by 0
+            rb.velocity = Vector2.down;
+        }
+        rb.velocity *= detachMagnitude / rb.velocity.magnitude;
     }
 }

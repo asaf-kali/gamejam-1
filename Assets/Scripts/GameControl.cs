@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
-    public static GameControl instance;         // A reference to our game control script so we can access it statically.
-    public Text scoreText;                      // A reference to the UI text component that displays the player's score.
-    public GameObject gameOvertext;             // A reference to the object that displays the text which appears when the player dies.
+    public static GameControl instance;
+    public Text scoreText;
 
     public GameObject player1;
     public GameObject player2;
     public GameObject ball;
+    private int score = 0;
+    public bool gameOver { get; private set; }
 
-    private int score = 0;                      // The player's score.
-    public bool gameOver = false;               // Is the game over?
     public const float scrollSpeed = 5.0f; 
     public const float scrollSpeedBgMid = -2.5f;
     public const float scrollSpeedBgFar = -1.0f;
@@ -66,10 +65,8 @@ public class GameControl : MonoBehaviour
 
     public void GameOver()
     {
-        // Activate the game over text.
         Debug.Log("Game over");
-        // gameOvertext.SetActive(true);
-        // Set the game to be over.
+        Physics2D.gravity = Vector2.zero;
         gameOver = true;
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ScrollingObject : MonoBehaviour
 {
-    //public ScrollingObject() : base(GameControl.scrollSpeed){}
-
     private Rigidbody2D rb2d;
 
     private void Start()
