@@ -15,7 +15,7 @@ public class GameControl : MonoBehaviour
 
     private int score = 0;                      // The player's score.
     public bool gameOver = false;               // Is the game over?
-    public const float scrollSpeed = -5.0f;
+    public const float scrollSpeed = 5.0f; 
     public const float scrollSpeedBgMid = -2.5f;
     public const float scrollSpeedBgFar = -1.0f;
     public const float scrollSpeedFg = -10.0f;
