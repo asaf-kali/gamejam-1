@@ -8,6 +8,8 @@ public class Particle : MonoBehaviour
     private Rigidbody2D rb;
     private PointEffector2D pef;
     public float catchDistance = 0.6f;
+    public float forceFactor = 1f / 300;
+    public float randomFactor = 1f / 200;
     public bool isCatched = false;
     public GameObject catcher = null;
 
@@ -23,12 +25,12 @@ public class Particle : MonoBehaviour
     void Update()
     {
         if (isCatched)
-            DanceAroundCatcher();
+            FollowCatcher();
         else
             LookForCatcher();
     }
 
-    void DanceAroundCatcher()
+    void FollowCatcher()
     {
         if (catcher == null)
         {
@@ -42,13 +44,15 @@ public class Particle : MonoBehaviour
 
     Vector2 GetCatcherForceOnMe()
     {
-        Vector2 force = -transform.localPosition / 1000;
+        Vector2 force = -transform.localPosition * forceFactor;
+        Vector2 rand = Random.insideUnitCircle * randomFactor;
+        force += rand;
         return force;
     }
 
     void CheckEscape()
     {
-        if (rb.velocity.magnitude > 5f)
+        if (rb.velocity.magnitude > 6f)
         {
             rb.velocity /= 2;
         }

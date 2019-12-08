@@ -9,7 +9,7 @@ public class Obsticle : MonoBehaviour
         {
             // If the bird hits the trigger collider in between the columns then
             // tell the game control that the bird scored.
-            GameControl.instance.BirdScored();
+            GameControl.instance.BallPass();
         }
     }
 }

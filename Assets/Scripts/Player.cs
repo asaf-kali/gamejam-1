@@ -30,22 +30,14 @@ public class Player : MonoBehaviour
         Debug.Log(this.name + " collided with " + other.gameObject.name);
         if (other.gameObject == GameControl.instance.ball)
         {
-            // TODO: Add points;
+            GameControl.instance.BallPass();
+            // GameControl.instance.ball.GetComponent<Rigidbody2D>().velocity *= -2f;
         }
-        // else if (other.gameObject == ) // Other bird
-        // {
-
-        // }
         else
         {
-            // Zero out the bird's velocity
-            rb.velocity = Vector2.zero;
-            // If the bird collides with something set it to dead...
+            // rb.velocity = Vector2.zero;
             isDead = true;
-            //...tell the Animator about it...
-            // anim.SetTrigger("Die");
-            //...and tell the game control about it.
-            GameControl.instance.BirdDied();
+            // GameControl.instance.GameOver();
         }
     }
 }

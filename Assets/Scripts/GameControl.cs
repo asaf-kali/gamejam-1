@@ -42,23 +42,20 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public void BirdScored()
+    public void BallPass()
     {
-        // The bird can't score if the game is over.
         if (gameOver)
             return;
-        // If the game is not over, increase the score...
         score++;
-        // ...and adjust the score text.
         scoreText.text = "Score: " + score.ToString();
     }
 
-    public void BirdDied()
+    public void GameOver()
     {
         // Activate the game over text.
         Debug.Log("Game over");
         // gameOvertext.SetActive(true);
         // Set the game to be over.
-        // gameOver = true;
+        gameOver = true;
     }
 }
