@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private float timeSinceHit = 0f;
 
-    public float forgivenessTime = 3; // Time in seconds between two hits
+    public float forgivenessTime = 1.2f; // Time in seconds between two hits
 
     protected void Start()
     {

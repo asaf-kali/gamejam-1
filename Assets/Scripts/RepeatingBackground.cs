@@ -24,7 +24,7 @@ public class RepeatingBackground : MonoBehaviour
     {
         // Check if the difference along the y axis between the main Camera and
         //the position of the object this is attached to is greater than bgVerticalLength.
-        if (transform.position.y > bgVerticalLength)
+        if (transform.position.y < -bgVerticalLength)
         {
             // If true, this means this object is no longer visible and we can safely move it forward to be re-used.
             RepositionBackground();
@@ -36,7 +36,7 @@ public class RepeatingBackground : MonoBehaviour
     {
         // This is how far to the right we will move our background object, in this case, twice its length.
         //This will position it directly to the right of the currently visible background object.
-        Vector2 groundOffSet = new Vector2(0, bgVerticalLength * -2f);
+        Vector2 groundOffSet = new Vector2(0, bgVerticalLength * 2f);
 
         // Move this object from it's position offscreen, behind the player, to the new position off-camera
         //in front of the player.

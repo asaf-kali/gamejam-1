@@ -14,7 +14,7 @@ public class GameControl : MonoBehaviour
     private int score = 0;
     public bool gameOver { get; private set; }
 
-    public const float scrollSpeed = 5.0f; 
+    public const float scrollSpeed = -5.0f; 
     public const float scrollSpeedBgMid = -2.5f;
     public const float scrollSpeedBgFar = -1.0f;
     public const float scrollSpeedFg = -10.0f;
