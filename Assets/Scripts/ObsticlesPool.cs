@@ -7,13 +7,11 @@ public class ObsticlesPool : MonoBehaviour
     public float spawnDelay;        // How quickly obsticles spawn.
     public float obsticleMin;       // Minimum x value of the obsticle position.
     public float obsticleMax;       // Maximum x value of the obsticle position.
-    public float spawnYPosition;    // Initial y position.
-    public float yVelocity;         // Velocity downwards.
     public GameObject original;
 
     private GameObject[] obsticles;                                   // Collection of pooled obsticles.
     private int currentColumn = 0;                                    // Index of the current obsticle in the collection.
-    private Vector2 objectPoolPosition = new Vector2(-15, -25);       // A holding position for our unused obsticles offscreen.
+    private Vector2 objectPoolPosition = new Vector2(-100, -100);       // A holding position for our unused obsticles offscreen.
     private float timeSinceLastSpawned;
 
     void Start()
@@ -46,9 +44,9 @@ public class ObsticlesPool : MonoBehaviour
 
         GameObject newObsticle = obsticles[currentColumn];
         // ...then set the current obsticle to that position.
-        newObsticle.transform.position = new Vector2(spawnXPosition, spawnYPosition);
+        newObsticle.transform.position = new Vector2(spawnXPosition, GameControl.instance.obsticlesSpawnY);
         Rigidbody2D rb = newObsticle.GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.down * yVelocity;
+        rb.velocity = Vector2.down * GameControl.instance.speed;
 
         // Increase the value of currentColumn. If the new size is too big, set it back to zero
         currentColumn++;

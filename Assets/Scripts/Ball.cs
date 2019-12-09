@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
         transform.position = GameControl.instance.KeepInMap(transform.position);
         if (GameControl.instance.gameOver)
             return;
-        if (transform.position.y <= GameControl.instance.bottonEdge)
+        if (transform.position.y <= GameControl.instance.bottomEdge)
         {
             GameControl.instance.GameOver();
         }

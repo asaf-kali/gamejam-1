@@ -13,14 +13,15 @@ public class GameControl : MonoBehaviour
     public GameObject player2;
     public GameObject ball;
     public Vector2 gravity;
-
-    private int score = 0;
-    public bool gameOver { get; private set; }
-    public float scrollSpeed;
+    public float speed;
     public float leftEdge;
     public float rightEdge;
     public float topEdge;
-    public float bottonEdge;
+    public float bottomEdge;
+    public float obsticlesSpawnY;
+
+    private int score = 0;
+    public bool gameOver { get; private set; }
 
     void Awake()
     {
@@ -64,8 +65,8 @@ public class GameControl : MonoBehaviour
             position.x = leftEdge;
         if (position.x >= rightEdge)
             position.x = rightEdge;
-        if (position.y <= bottonEdge)
-            position.y = bottonEdge;
+        if (position.y <= bottomEdge)
+            position.y = bottomEdge;
         if (position.y >= topEdge)
             position.y = topEdge;
         return position;

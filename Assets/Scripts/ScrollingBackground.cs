@@ -8,7 +8,7 @@ public class ScrollingBackground : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0, GameControl.instance.scrollSpeed);
+        rb.velocity = Vector2.down * GameControl.instance.speed;
     }
 
     private void Update()
