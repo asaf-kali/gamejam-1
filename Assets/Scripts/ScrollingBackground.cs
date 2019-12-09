@@ -3,19 +3,19 @@
 
 public class ScrollingBackground : MonoBehaviour
 {
-    private Rigidbody2D rb2d;
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        rb2d.velocity = new Vector2(0, GameControl.scrollSpeed);
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0, GameControl.instance.scrollSpeed);
     }
 
     private void Update()
     {
         if (GameControl.instance.gameOver)
         {
-            rb2d.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
         }
     }
 }
