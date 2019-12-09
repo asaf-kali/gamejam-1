@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public float forgivenessTime;
     private float timeSinceHit = 0f;
-    public float forgivenessTime = 1.2f; // Time in seconds between two hits
 
     protected void Start()
     {
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         timeSinceHit += Time.deltaTime;
+        transform.position = GameControl.instance.KeepInMap(transform.position);
     }
 
     void OnCollisionEnter2D(Collision2D other)

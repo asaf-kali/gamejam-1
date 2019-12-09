@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParticlesPoll : MonoBehaviour
+public class ParticlesPool : MonoBehaviour
 {
     public float spawnDelay = 5f;
     public float xMin = -8f ;
