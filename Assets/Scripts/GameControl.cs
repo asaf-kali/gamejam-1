@@ -14,10 +14,11 @@ public class GameControl : MonoBehaviour
     private int score = 0;
     public bool gameOver { get; private set; }
 
-    public const float scrollSpeed = -5.0f;
-    public const float scrollSpeedBgMid = -2.5f;
-    public const float scrollSpeedBgFar = -1.0f;
-    public const float scrollSpeedFg = -10.0f;
+    public float scrollSpeed;
+    public float leftEdge;
+    public float rightEdge;
+    public float topEdge;
+    public float bottonEdge;
 
     void Awake()
     {
@@ -55,6 +56,19 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    public Vector2 KeepInMap(Vector2 position)
+    {
+        if (position.x <= leftEdge)
+            position.x = leftEdge;
+        if (position.x >= rightEdge)
+            position.x = rightEdge;
+        if (position.y <= bottonEdge)
+            position.y = bottonEdge;
+        if (position.y >= topEdge)
+            position.y = topEdge;
+        return position;
+    }
+
     public void BallPass()
     {
         if (gameOver)
@@ -65,8 +79,9 @@ public class GameControl : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game over");
-        Physics2D.gravity = Vector2.zero;
+        // Debug.Log("Game over");
+        // Physics2D.gravity = Vector2.zero;
         // gameOver = true;
     }
+
 }

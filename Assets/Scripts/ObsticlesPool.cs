@@ -3,20 +3,18 @@ using System.Collections;
 
 public class ObsticlesPool : MonoBehaviour
 {
-    public int obsticlePoolSize = 7;                                  // How many obsticles to keep on standby.
-    public float spawnDelay = 1f;                                     // How quickly obsticles spawn.
-    public float obsticleMin = -8f;                                   // Minimum x value of the obsticle position.
-    public float obsticleMax = 8f;                                    // Maximum x value of the obsticle position.
-    public float spawnYPosition = -10f;
-    public float yVelocity = 7f;
+    public int obsticlePoolSize;    // How many obsticles to keep on standby.
+    public float spawnDelay;        // How quickly obsticles spawn.
+    public float obsticleMin;       // Minimum x value of the obsticle position.
+    public float obsticleMax;       // Maximum x value of the obsticle position.
+    public float spawnYPosition;    // Initial y position.
+    public float yVelocity;         // Velocity downwards.
     public GameObject original;
 
     private GameObject[] obsticles;                                   // Collection of pooled obsticles.
     private int currentColumn = 0;                                    // Index of the current obsticle in the collection.
     private Vector2 objectPoolPosition = new Vector2(-15, -25);       // A holding position for our unused obsticles offscreen.
-
     private float timeSinceLastSpawned;
-
 
     void Start()
     {
