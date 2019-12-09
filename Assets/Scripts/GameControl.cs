@@ -79,8 +79,8 @@ public class GameControl : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game over");
-        Physics2D.gravity = Vector2.zero;
+        // Debug.Log("Game over");
+        // Physics2D.gravity = Vector2.zero;
         // gameOver = true;
     }
 

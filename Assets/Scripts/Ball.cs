@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Ball : MonoBehaviour
 {
-
-    public float yLimit = -9f;
-
     void Start()
     {
         GameControl.instance.ball = this.gameObject;
@@ -13,9 +10,10 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
+        transform.position = GameControl.instance.KeepInMap(transform.position);
         if (GameControl.instance.gameOver)
             return;
-        if (transform.position.y < yLimit)
+        if (transform.position.y <= GameControl.instance.bottonEdge)
         {
             GameControl.instance.GameOver();
         }
