@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool isDead = false;            // Has the player collided with a wall?
-    public Animator anim;                  // Reference to the Animator component.
-    public Rigidbody2D rb;               // Holds a reference to the Rigidbody2D component of the bird.
+    private Rigidbody2D rb;
+    private float timeSinceHit = 0f;
+    public float forgivenessTime = 1.2f; // Time in seconds between two hits
 
     protected void Start()
     {
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
     }
 
     void Update()
     {
-        // Don't allow control if the bird has died.
-        if (isDead)
-        {
-            return;
-        }
+        timeSinceHit += Time.deltaTime;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -31,11 +26,27 @@ public class Player : MonoBehaviour
         {
             GameControl.instance.BallPass();
         }
+        else if (other.gameObject.GetComponent<Player>() != null)
+        {
+            return;
+        }
         else
         {
-            // rb.velocity = Vector2.zero;
-            isDead = true;
-            // GameControl.instance.GameOver();
+            // Obsticle hit
+            if (timeSinceHit <= forgivenessTime)
+            {
+                Debug.Log("Saved because of spare time " + timeSinceHit + " is not yet " + forgivenessTime);
+                return;
+            }
+            Debug.Log("Hit!");
+            timeSinceHit = 0;
+            Particle[] particles = GetComponentsInChildren<Particle>(true);
+            if (particles.Length == 0)
+            {
+                GameControl.instance.GameOver();
+                return;
+            }
+            particles[0].Detach();
         }
     }
 }
