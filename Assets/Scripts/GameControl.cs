@@ -7,13 +7,15 @@ public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
     public Text scoreText;
-
+    public GameObject gameOverDisplay;
+    public GameObject globalLight;
     public GameObject player1;
     public GameObject player2;
     public GameObject ball;
+    public Vector2 gravity;
+
     private int score = 0;
     public bool gameOver { get; private set; }
-
     public float scrollSpeed;
     public float leftEdge;
     public float rightEdge;
@@ -29,6 +31,8 @@ public class GameControl : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        gameOver = false;
+        Physics2D.gravity = gravity;
         InitPlayers();
     }
 
@@ -48,10 +52,8 @@ public class GameControl : MonoBehaviour
 
     void Update()
     {
-        // If the game is over and the player has pressed some input...
-        if (gameOver && Input.GetMouseButtonDown(0))
+        if (gameOver && Input.GetKeyDown(KeyCode.Space))
         {
-            // ...reload the current scene.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
@@ -80,8 +82,10 @@ public class GameControl : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game over");
-        Physics2D.gravity = Vector2.zero;
         gameOver = true;
+        Physics2D.gravity = Vector2.zero;
+        globalLight.SetActive(false);
+        gameOverDisplay.SetActive(true);
     }
 
 }
